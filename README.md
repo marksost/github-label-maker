@@ -4,6 +4,10 @@ A set of bash scripts for deleting / creating labels within Github
 
 ---
 
+![label maker](https://www.clasohlson.com/medias/sys_master/8872608202782.jpg)
+
+---
+
 If you're like me, you create a bunch of Github repos all of the time. And if you're also like me, you work on a team of talented developers who expect a standard set of labels to be present with they're opening PRs. Up until now, I've been creating these manually. I finally decided to be lazy and automate it, thus `github-label-maker` was born.
 
 ## Installation and use
