@@ -4,7 +4,7 @@ A set of bash scripts for deleting / creating labels within Github
 
 ---
 
-![label maker](https://www.clasohlson.com/medias/sys_master/8872608202782.jpg)
+![label maker](https://media.giphy.com/media/PObhPDzNyKyaY/giphy.gif)
 
 ---
 
