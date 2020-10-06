@@ -23,18 +23,19 @@ main() {
 
 # Create labels for a specific repo
 create_labels() {
-  while IFS= read -r LABELNAME && IFS= read -r LABELCOLOR; do
+  while IFS= read -r LABELNAME && IFS= read -r LABELCOLOR && IFS= read -r LABELDESCRIPTION; do
     echo_yellow "${TAB}Creating label with the following settings:"
     echo_yellow "${TABx2}Name: $LABELNAME"
     echo_yellow "${TABx2}Color: $LABELCOLOR"
+    echo_yellow "${TABx2}Description: $LABELDESCRIPTION"
 
     curl -X POST --header "Authorization: token ${GITHUBTOKEN}" \
       --header "Content-Type: application/json" \
-      --data "{\"name\":\"${LABELNAME}\", \"color\":\"${LABELCOLOR}\"}" \
+      --data "{\"name\":\"${LABELNAME}\", \"color\":\"${LABELCOLOR}\", \"description\":\"${LABELDESCRIPTION}\"}" \
       "https://api.github.com/repos/${GITHUBORG}/${GITHUBREPO}/labels"
 
     echo ""
-  done < <(jq -r 'keys[] as $k | (.[$k].name, .[$k].color)' $(pwd)/labels.json)
+  done < <(jq -r 'keys[] as $k | (.[$k].name, .[$k].color, .[$k].description)' $(pwd)/labels.json)
 }
 
 # Function that outputs usage information
