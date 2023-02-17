@@ -18,7 +18,7 @@ These scripts expect you to have a Github personal access token exported in your
 
 Once the token is exported, you can run the scripts. There are two of them: `delete-labels` and `create-labels`. Their purposes are pretty self-explanatory, but it's important to note that you should run the `delete-labels` script **before** the `create-labels` one.
 
-The `create-labels` script will take the contents of the `labels.json` file and create labels with those names and colors. If you need to change the labels you want to create, edit that file (or submit a PR to this repo that makes that configurable :)
+The `create-labels` script will take the contents of the `labels.json` file by default and create labels with those names and colors. If you need to change the labels you want to create, edit that file or pass in a custom json file instead using the file name without the .json file extension.
 
 ## Examples
 
@@ -51,7 +51,7 @@ Deleting labels from repository...
    Delete label: Ready for QA...
    Delete label: Ready for Review...
    Delete label: Tests Failing...
-Labels deleted succesfully!
+Labels deleted successfully!
 
 $ create-labels -o marksost -r github-label-maker
 
@@ -69,5 +69,26 @@ Creating labels for the following organization and repository:
     Name: Tests Failing
     Color: b60205
 {"id":858305121,"url":"https://api.github.com/repos/marksost/github-label-maker/labels/Tests%20Failing","name":"Tests Failing","color":"b60205","default":false}
-Labels created succesfully!
+Labels created successfully!
+
+$ create-labels -o marksost -r github-label-maker -l my-custom-labels
+
+Creating labels for the following organization and repository:
+  Organization: marksost
+  Repository: github-label-maker
+  Label file: my-custom-labels.json
+  Creating label with the following settings:
+    Name: Needs Code Review
+    Color: ed7568
+{
+  "id": 5166120798,
+  "node_id": "LA_kwDOI_Bh3M8AAAABM-y_Xg",
+  "url": "https://api.github.com/repos/marksost/github-label-maker/labels/Needs%20Code%20Review",
+  "name": "Needs Code Review",
+  "color": "ed7568",
+  "default": false,
+  "description": null
+}
+
+Labels created successfully!
 ```

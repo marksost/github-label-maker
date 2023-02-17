@@ -21,7 +21,7 @@ main() {
   get_labels
 
   # Check if there are any labels to delete
-  if [ -z "${LABELS}" ]; then 
+  if [ -z "${LABELS}" ]; then
     echo_red "No labels found in repository ${GITHUBREPO}. Halting execution."
     exit 0
   fi
@@ -31,7 +31,7 @@ main() {
   # Delete labels
   delete_labels
 
-  echo_green "Labels deleted succesfully!"
+  echo_green "Labels deleted successfully!"
 }
 
 # Gets and populates labels for a given repository

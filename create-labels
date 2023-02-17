@@ -14,11 +14,12 @@ main() {
   echo_yellow "Creating labels for the following organization and repository:"
   echo_yellow "${TAB}Organization: $GITHUBORG"
   echo_yellow "${TAB}Repository: $GITHUBREPO"
+  echo_yellow "${TAB}Label File: ${LABELFILE:-labels}.json"
 
   # Create labels
   create_labels
 
-  echo_green "Labels created succesfully!"
+  echo_green "Labels created successfully!"
 }
 
 # Create labels for a specific repo
@@ -34,7 +35,7 @@ create_labels() {
       "https://api.github.com/repos/${GITHUBORG}/${GITHUBREPO}/labels"
 
     echo ""
-  done < <(jq -r 'keys[] as $k | (.[$k].name, .[$k].color)' $(pwd)/labels.json)
+  done < <(jq -r 'keys[] as $k | (.[$k].name, .[$k].color)' $(pwd)/${LABELFILE:-labels}.json)
 }
 
 # Function that outputs usage information
@@ -48,6 +49,7 @@ Description
 Options:
   -o (required)     The Github organization (or user) that the repository resides under
   -r (required)     The name of the repository
+  -l                The name of the label config file
   -t                A Github personal token, used for authenticating API requests
   -h                Print this message and quit
 
@@ -62,11 +64,12 @@ verify_input() {
 }
 
 # Parse input options
-while getopts ":o:r:t:h" opt; do
+while getopts ":o:r:t:l:h" opt; do
   case "$opt" in
     o) GITHUBORG=$OPTARG;;
     r) GITHUBREPO=$OPTARG;;
     t) GITHUBTOKEN=$OPTARG;;
+    l) LABELFILE=$OPTARG;;
     h) usage;;
     \?) echo_red "Invalid option: -${OPTARG}." && usage;;
     :) die "Option -${OPTARG} requires an argument.";;
